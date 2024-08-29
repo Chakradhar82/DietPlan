@@ -126,15 +126,17 @@ const thirdPartyApi = async (req, res, next) => {
 }
 
 const signup = async (req, res, next) => {
-    const body = req.body;
-    console.log(body)
-    let password = body.password;
+    console.log(req.body);
+
+    const { first_name, last_name, email, password, age, phone, gender } = req.body;
     const salt = await genSalt(10);
-    password = await hash(password, salt);
+    let hashpass = password;
+    hashpass = await hash(hashpass, salt);
+    console.log(first_name, last_name, hashpass, age, phone, gender);
 
-    let query = "INSERT INTO user(username,email,password) VALUES (?,?,?)"
+    let query = "INSERT INTO user(first_name,last_name,email,password,age,phone,gender) VALUES (?,?,?,?,?,?,?)"
 
-    connection.query(query, [body.username, body.email, password], (err, results) => {
+    connection.query(query, [first_name, last_name, email, hashpass, age, phone, gender], (err, results) => {
         if (err) {
             res.status(501).json({ err });
             return;

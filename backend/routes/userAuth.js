@@ -6,7 +6,7 @@ router.route('/').get(verifyJWT, users);
 router.route('/:id').get(verifyJWT, getUserByID);
 router.route('/update').patch(verifyJWT, updateUser);
 router.route('/delete').delete(verifyJWT, deleteUser);
-router.route('/signup').post(verifyJWT, signup);
+router.route('/signup').post(signup);
 router.route('/login').post(login);
 
 module.exports = router
