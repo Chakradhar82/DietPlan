@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Col, Form, Input } from 'antd';
 import $ from 'jquery';
 
 const onFinish = (values) => {
@@ -32,29 +32,15 @@ const onFinishFailed = (errorInfo) => {
 };
 
 const Login = () => (
-    <div className='login'>
+    <div className='container' style={{width:"300px"}}>
+        <header>Login</header>
         <Form
-            name="basic"
-            labelCol={{
-                span: 8,
-            }}
-            wrapperCol={{
-                span: 16,
-            }}
-            style={{
-                maxWidth: 600,
-                padding: "70px",
-                backgroundColor: "ghostwhite",
-                borderRadius: "21px",
-                background: "linear-gradient( #5096d2, #273f70)"
-            }}
-            initialValues={{
-                remember: true,
-            }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
+            layout='vertical'
         >
+            <Col xs={24}>
             <Form.Item
                 label="Username"
                 name="username"
@@ -67,7 +53,7 @@ const Login = () => (
             >
                 <Input />
             </Form.Item>
-
+            </Col>
             <Form.Item
                 label="Password"
                 name="password"
@@ -81,26 +67,16 @@ const Login = () => (
                 <Input.Password />
             </Form.Item>
 
-            <Form.Item
-                name="remember"
-                valuePropName="checked"
-                wrapperCol={{
-                    offset: 8,
-                    span: 16,
-                }}
-            >
-                <Checkbox>Remember me</Checkbox>
-            </Form.Item>
-
-            <Form.Item
-                wrapperCol={{
-                    offset: 8,
-                    span: 16,
-                }}
-            >
+            <Form.Item>
+                <div className='button'>
                 <Button type="primary" htmlType="submit">
                     Submit
                 </Button>
+                </div>
+                <div class="footer">
+                <span>Don't have an account?</span>
+                <a href="/Login">Sign Up</a>
+        </div>
             </Form.Item>
         </Form>
     </div>

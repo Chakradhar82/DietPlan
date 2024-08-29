@@ -1,12 +1,15 @@
 import './App.css';
 import Login from './component/Login';
+import Signup from './component/Signup';
+
 
 function App() {
 
   return (
-    <>
-      <Login />
-    </>
+    <div className='background'>
+      {/* <Login/> */}
+      <Signup/>
+    </div>
   );
 }
 
