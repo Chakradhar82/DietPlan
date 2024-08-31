@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Col, Form, Input } from 'antd';
 import $ from 'jquery';
+import { Link } from 'react-router-dom';
 
 const onFinish = (values) => {
     let body = {
@@ -32,7 +33,7 @@ const onFinishFailed = (errorInfo) => {
 };
 
 const Login = () => (
-    <div className='container' style={{width:"300px"}}>
+    <div className='container' style={{ width: "300px" }}>
         <header>Login</header>
         <Form
             onFinish={onFinish}
@@ -41,18 +42,18 @@ const Login = () => (
             layout='vertical'
         >
             <Col xs={24}>
-            <Form.Item
-                label="Username"
-                name="username"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your username!',
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
+                <Form.Item
+                    label="Username"
+                    name="username"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your username!',
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
             </Col>
             <Form.Item
                 label="Password"
@@ -69,14 +70,14 @@ const Login = () => (
 
             <Form.Item>
                 <div className='button'>
-                <Button type="primary" htmlType="submit">
-                    Submit
-                </Button>
+                    <Button type="primary" htmlType="submit">
+                        Submit
+                    </Button>
                 </div>
-                <div class="footer">
-                <span>Don't have an account?</span>
-                <a href="/Login">Sign Up</a>
-        </div>
+                <div className="footer">
+                    <span>Don't have an account?</span>
+                    <Link to="/signup">Sign Up</Link>
+                </div>
             </Form.Item>
         </Form>
     </div>

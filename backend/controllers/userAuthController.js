@@ -28,7 +28,7 @@ let users = (req, res, next) => {
 let getUserByID = (req, res, next) => {
     let id = req.params.id;
     console.log(id)
-    let query = 'SELECT * FROM user WHERE id = ?'
+    let query = 'SELECT * FROM user WHERE user_id = ?'
     connection.query(query, [id], (err, results, fields) => {
         if (err) {
             console.error('Error executing query:', err);
@@ -161,6 +161,7 @@ const login = (req, res, next) => {
             res.status(401).json({ message: "incorrect email or password" });
             return;
         }
+
         let verifyPassword = await compare(password, results[0].password);
         if (verifyPassword) {
             let token = sign({ result: results[0] }, process.env.SECRET_KEY, {
