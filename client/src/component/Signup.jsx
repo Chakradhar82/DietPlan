@@ -1,12 +1,14 @@
-import { Button, Form, Input, Row, Select, Col } from 'antd';
+import { Button, Form, Input, Row, Select, Col, message } from 'antd';
 import React from 'react';
 import $ from 'jquery';
-import { Link } from 'react-router-dom';
+import Title from 'antd/es/typography/Title';
+import { Link, useNavigate } from 'react-router-dom';
 
 const { Option } = Select;
 
 
 const Signup = () => {
+    const navigate = useNavigate();
     const [form] = Form.useForm();
     const onFinish = ({ first_name, last_name, password, age, phone, gender, email }) => {
         let body = {
@@ -24,6 +26,10 @@ const Signup = () => {
         ).then(
             (res) => {
                 console.log(res);
+                if (res.status === 201){
+                    message.success('Successfully registered');
+                    navigate('/login');
+                }
             },
             (err) => {
                 console.log(err);
@@ -34,7 +40,7 @@ const Signup = () => {
 
     return (
         <div className='container'>
-            <header>Sign up</header>
+            <Title type="primary" level={5} style={{ textAlign: 'center', fontSize:"30px", marginBottom: '25px' }} >Sign up</Title>
             <Form
                 form={form}
                 name="register"

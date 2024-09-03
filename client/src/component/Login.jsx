@@ -1,8 +1,12 @@
 import React from 'react';
 import { Button, Col, Form, Input } from 'antd';
 import $ from 'jquery';
-import { Link } from 'react-router-dom';
+import Title from 'antd/es/typography/Title';
+import { Link, useNavigate } from 'react-router-dom';
 
+const Login = () => {
+
+    const navigate = useNavigate()
 const onFinish = (values) => {
     let body = {
         "email": values.username,
@@ -20,6 +24,8 @@ const onFinish = (values) => {
     ).then(
         (res) => {
             console.log(res);
+            navigate('/userInfoForm');
+            
         },
         (err) => {
             console.log(err);
@@ -32,9 +38,9 @@ const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
 };
 
-const Login = () => (
+    return(
     <div className='container' style={{ width: "300px" }}>
-        <header>Login</header>
+        <Title type="primary" level={4} style={{ textAlign: 'center',fontSize:"30px", marginBottom: '25px' }} >Login</Title>
         <Form
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
@@ -71,7 +77,7 @@ const Login = () => (
             <Form.Item>
                 <div className='button'>
                     <Button type="primary" htmlType="submit">
-                        Submit
+                        Login
                     </Button>
                 </div>
                 <div className="footer">
@@ -81,6 +87,6 @@ const Login = () => (
             </Form.Item>
         </Form>
     </div>
-
-);
+    );
+}
 export default Login;
