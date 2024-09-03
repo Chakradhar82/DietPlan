@@ -1,6 +1,5 @@
 const mysql = require('mysql');
 
-console.log(process.env.PASSWORD)
 let connection = mysql.createConnection({
     host: process.env.HOST,
     password: process.env.PASSWORD,

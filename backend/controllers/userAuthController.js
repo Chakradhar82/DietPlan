@@ -137,12 +137,25 @@ const signup = async (req, res, next) => {
     let query = "INSERT INTO user(first_name,last_name,email,password,age,phone,gender) VALUES (?,?,?,?,?,?,?)"
 
     connection.query(query, [first_name, last_name, email, hashpass, age, phone, gender], (err, results) => {
-        if (err) {
-            res.status(501).json({ err });
-            return;
+        try {
+            if (err && err.errno === 1062) {
+                res.status(400).json({ status: 400, message: "User with same email exit!", err });
+                return;
+            } else {
+                res.status(401).json({ err });
+            }
+            res.status(201).json({
+                status: 201,
+                message: "successfully registered"
+            });
+        } catch (error) {
+            console.error('An unexpected error occurred:', error);
+            res.status(500).json({
+                status: 500,
+                message: 'Internal Server Error'
+            });
         }
-        console.log('Data inserted successfully:', results.insertId);
-        res.status(201).json(results);
+
     })
 }
 
@@ -168,7 +181,7 @@ const login = (req, res, next) => {
                 expiresIn: process.env.ACCESS_TOKEN_EXPIRY
             })
             res.json({
-                success: 1,
+                status: 200,
                 message: "login successfully!!",
                 token: token
             })
@@ -182,4 +195,18 @@ const login = (req, res, next) => {
 }
 
 
-module.exports = { signup, users, getUserByID, updateUser, deleteUser, login, thirdPartyApi };
+const userTemplate = (req, res) => {
+    let query = "SELECT * FROM userhealthinfotemplate";
+
+    connection.query(query, (err, result) => {
+        console.log("result", result)
+        if (err) {
+            res.status(401).json({ err });
+        }
+
+        res.status(200).json({ status: 200, data: result });
+    })
+}
+
+
+module.exports = { signup, users, getUserByID, updateUser, deleteUser, login, thirdPartyApi, userTemplate };

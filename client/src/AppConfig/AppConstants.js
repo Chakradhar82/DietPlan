@@ -4,18 +4,18 @@ const { darkAlgorithm } = theme;
 export let THEME_DARK = {
     "algorithm": darkAlgorithm,
     "token": {
-        "fontFamily": "Archivo",
-        "colorPrimary": "#dc4446",
+        // "fontFamily": "Archivo",
+        "colorPrimary": "#ff6500",
         "colorInfo": "#2eb8c1",
         "colorSuccess": "#82b44f",
         "colorWarning": "#f2c357",
-        "colorLink": "#dc4446",
+        "colorLink": "#ff6500",
         "colorBgBase": "#21272f",
         "borderRadius": "4px"
     },
     "components": {
         "Typography": {
-            "colorLink": "#dc4446",
+            "colorLink": "#ff6500",
             "colorLinkHover": "#e5e5e5"
         },
         "Tabs": {
@@ -33,7 +33,7 @@ export let THEME_DARK = {
             "defaultShadow": "",
             "primaryShadow": "",
             "dangerShadow": "",
-            "colorPrimary": "#dc4446"
+            "colorPrimary": "#ff6500"
         },
         "Table": {
             "headerSplitColor": "#444444",

@@ -1,6 +1,6 @@
 require('dotenv').config({ path: `${process.cwd()}/.env` })
 const express = require("express");
-const userRouter = require("./routes/userAuth")
+const userRouter = require("./routes/userRoutes")
 
 const app = express();
 const PORT = process.env.PORT || 5000;
